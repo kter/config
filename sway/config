@@ -1,0 +1,120 @@
+set $mod Mod4
+set $alt Mod1
+set $term alacritty
+set $menu dmenu_run
+
+### アプリ起動 ###
+bindsym Shift+$mod+m exec mpv "$(wl-paste)"
+
+### ウインドウフォーカス ###
+bindsym $alt+h focus left
+bindsym $alt+j focus down
+bindsym $alt+k focus up
+bindsym $alt+l focus right
+bindsym $alt+z focus prev
+bindsym $alt+c focus next
+
+### ウインドウの移動（位置の入れ替え） ###
+bindsym Shift+$alt+h move left
+bindsym Shift+$alt+j move down
+bindsym Shift+$alt+k move up
+bindsym Shift+$alt+l move right
+
+### ウインドウサイズ均等化 ###
+bindsym Shift+$alt+0 exec swaymsg "resize set width 50 ppt height 50 ppt"
+
+### フロートウインドウ配置 ###
+bindsym Shift+$alt+Up floating enable; resize set 100 ppt 100 ppt; move position 0 0
+bindsym Shift+$alt+Left floating enable; resize set 50 ppt 100 ppt; move position 0 0
+bindsym Shift+$alt+Right floating enable; resize set 50 ppt 100 ppt; move position 50 ppt 0
+
+### ワークスペースの切替 ###
+bindsym $mod+$alt+w workspace prev
+bindsym $mod+$alt+x workspace back_and_forth
+bindsym $mod+$alt+z workspace prev_on_output
+bindsym $mod+$alt+c workspace next_on_output
+bindsym $mod+$alt+1 workspace number 1
+bindsym $mod+$alt+2 workspace number 2
+bindsym $mod+$alt+3 workspace number 3
+
+### モニター間の移動 ###
+bindsym Ctrl+$mod+z move window to output left; focus output left
+bindsym Ctrl+$mod+c move window to output right; focus output right
+
+### モニターフォーカス ###
+bindsym Ctrl+$alt+z focus output left
+bindsym Ctrl+$alt+c focus output right
+
+### ウインドウを相対的に移動 ###
+bindsym Shift+Ctrl+a move left 20 px
+bindsym Shift+Ctrl+s move down 20 px
+bindsym Shift+Ctrl+w move up 20 px
+bindsym Shift+Ctrl+d move right 20 px
+
+### ウインドウサイズ調整 ###
+# 拡大
+bindsym Shift+$alt+a resize shrink width 20 px
+bindsym Shift+$alt+d resize grow width 20 px
+bindsym Shift+$alt+w resize shrink height 20 px
+bindsym Shift+$alt+s resize grow height 20 px
+
+# 縮小
+bindsym Shift+$mod+a resize grow width 20 px
+bindsym Shift+$mod+d resize shrink width 20 px
+bindsym Shift+$mod+w resize grow height 20 px
+bindsym Shift+$mod+s resize shrink height 20 px
+
+### ウインドウ分割タイプ変更 ###
+bindsym $alt+e layout toggle split
+
+### フロート化 ###
+bindsym $alt+t floating toggle
+
+### スティッキー（全ワークスペース表示） ###
+bindsym $alt+s sticky toggle
+
+### 最前面表示切替 ###
+bindsym $alt+o floating toggle, sticky toggle
+
+### フルスクリーン表示切替 ###
+bindsym $alt+f fullscreen toggle
+
+### レイアウト切り替え ###
+bindsym Ctrl+$alt+a layout default
+bindsym Ctrl+$alt+d floating enable
+bindsym Ctrl+$alt+s layout toggle split
+
+### 回転やミラーリング（擬似的対応）###
+bindsym $alt+r layout tabbed
+bindsym $alt+y layout stacking
+bindsym $alt+x layout toggle split
+
+### ギャップトグル (Gapsが設定済みの場合のみ有効) ###
+bindsym $alt+a gaps inner current toggle 20; gaps outer current toggle 20
+
+### ピクチャーインピクチャー風 (border toggle) ###
+bindsym $alt+p border toggle
+
+### ターミナルとランチャー ###
+bindsym $mod+Return exec $term
+bindsym $mod+d exec $menu
+
+# remap
+input type:keyboard {
+  xkb_layout jp
+  xkb_options caps:ctrl_modifier
+}
+
+# Scratch Pad
+bindsym $mod+Shift+Delete move scratchpad
+bindsym $mod+Delete scratchpad show
+
+# swaybar
+bar {
+  # status_command waybar
+  position top
+  tray_output primary
+}
+
+# Keyring for Chrominium
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
