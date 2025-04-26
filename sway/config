@@ -111,10 +111,12 @@ bindsym $mod+Delete scratchpad show
 
 # swaybar
 bar {
+  mode invisible
   status_command waybar
   position top
   tray_output primary
 }
+exec waybar
 
 # Keyring for Chrominium
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
