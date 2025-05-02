@@ -39,3 +39,4 @@
   374  sudo dnf install gnome-keyring seahorse
   410  sudo dnf install fcitx5 fcitx5-mozc fcit5-configtool
   411  sudo dnf install fcitx5 fcitx5-mozc fcitx5-configtool
+  sudo dnf install brightnessctl
